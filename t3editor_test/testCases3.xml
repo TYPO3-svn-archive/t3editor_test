@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?> 
+<testCases>
+  <testCase id="type.TEXT.check">
+    <typoscript>
+    <![CDATA[
+bla = TEXT
+bla.]]>
+    </typoscript>
+  </testCase>
+  <testCase id="simpleCopy">
+    <typoscript>
+    <![CDATA[
+bla = TEXT
+blu < bla
+blu.]]>
+    </typoscript>
+  </testCase>
+  <testCase id="reference1">
+    <typoscript>
+    <![CDATA[
+bla = TEXT
+blu =< bla
+blu.]]>
+    </typoscript>
+  </testCase>
+  <testCase id="reference2">
+    <typoscript>
+    <![CDATA[
+bla = TEXT
+blu =< bla
+blu.aaa = xxx
+bla.]]>
+    </typoscript>
+  </testCase>
+  <testCase id="brackets1">
+    <typoscript>
+    <![CDATA[
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.
+bla = TEXT
+bla{
+  aaa = IMAGE 
+}
+bla.aaa.]]>
+    </typoscript>
+  </testCase>
+</testCases>
