@@ -1,85 +1,139 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes" ?> 
 <testCases>
-  <testCase id="type.TEXT.check">
-    <typoscript>
-    <![CDATA[
+	<testCase id="type.TEXT.check">
+		<typoscript>
+		<![CDATA[
 bla = TEXT
 bla.]]>
-    </typoscript>
-  </testCase>
-  <testCase id="simpleCopy">
-    <typoscript>
-    <![CDATA[
+		</typoscript>
+		<assertFirstProposal>
+			value
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="type.IMAGE.check">
+		<typoscript>
+		<![CDATA[
+bla = IMAGE
+bla.]]>
+		</typoscript>
+		<assertFirstProposal>
+			altText
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="simpleCopy">
+		<typoscript>
+		<![CDATA[
 bla = TEXT
 blu < bla
 blu.]]>
-    </typoscript>
-  </testCase>
-  <testCase id="reference1">
-    <typoscript>
-    <![CDATA[
+		</typoscript>
+		<assertFirstProposal>
+			value
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="reference1">
+		<typoscript>
+		<![CDATA[
 bla = TEXT
 blu =< bla
 blu.]]>
-    </typoscript>
-  </testCase>
-  <testCase id="reference2">
-    <typoscript>
-    <![CDATA[
+		</typoscript>
+		<assertFirstProposal>
+			value
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="reference2">
+		<typoscript>
+		<![CDATA[
 bla = TEXT
 blu =< bla
 blu.aaa = xxx
 bla.]]>
-    </typoscript>
-  </testCase>
-  <testCase id="brackets1">
-    <typoscript>
-    <![CDATA[
+		</typoscript>
+		<assertFirstProposal>
+			aaa
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="nestedType">
+		<typoscript>
+		<![CDATA[
 bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
-bla.aaa.
-bla = TEXT
-bla{
-  aaa = IMAGE 
-}
+bla.aaa = IMAGE
+bbb = TEXT
+bbb.value = fuf
 bla.aaa.]]>
-    </typoscript>
-  </testCase>
+		</typoscript>
+		<assertFirstProposal>
+			altText
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="nestedType2">
+		<typoscript>
+		<![CDATA[
+bla = TEXT
+bla{
+  aaa = IMAGE
+}
+bbb = TEXT
+bbb.value = fuf
+bla.aaa.]]>
+		</typoscript>
+		<assertFirstProposal>
+			altText
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="delete1">
+		<typoscript>
+		<![CDATA[
+temp.myImage = IMAGE
+temp.myImage >
+temp.
+]]>
+		</typoscript>
+	</testCase>
+	<testCase id="delete2">
+		<typoscript>
+		<![CDATA[
+temp.myImage = IMAGE
+temp.myImage.test1.test2 = bla
+temp.myImage >
+temp.myImage.test1.
+]]>
+		</typoscript>
+	</testCase>
+	<testCase id="relativePath1">
+		<typoscript>
+		<![CDATA[
+temp.myImage = IMAGE
+temp.myImage{
+	
+]]>
+		</typoscript>
+		<assertFirstProposal>
+			altText
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="relativePath2">
+		<typoscript>
+		<![CDATA[
+temp.myImage = IMAGE
+temp.myImage{
+	file{
+		
+]]>
+		</typoscript>
+		<assertFirstProposal>
+			altText
+		</assertFirstProposal>
+	</testCase>
+	<testCase id="externalTemplate1">
+		<typoscript>
+		<![CDATA[
+lib.
+]]>
+		</typoscript>
+		<assertFirstProposal>
+			stdheader
+		</assertFirstProposal>
+	</testCase>
 </testCases>
