@@ -81,7 +81,7 @@ var TestPlugin = function() {
 		testsFinished = 0;
 		updateGreenBar();
 		logArea.value = '';
-		mirror.setCode('');
+		//mirror.setCode('');
 		loadTestCases();
 	}
 	
