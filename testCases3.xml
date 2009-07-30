@@ -133,7 +133,7 @@ lib.
 ]]>
 		</typoscript>
 		<assertFirstProposal>
-			stdheader
+			parseFunc
 		</assertFirstProposal>
 	</testCase>
 </testCases>
