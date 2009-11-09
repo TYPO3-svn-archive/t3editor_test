@@ -140,7 +140,7 @@ var TestPlugin = function() {
 		log('testing '+testCaseId,false);
 		var testCase = getTestCaseById(testCaseId);
 		if(!referenceValue)
-			referenceValue = testCase.getElementsByTagName('assertFirstProposal')[0].textContent.strip();
+			referenceValue = testCase.getElementsByTagName('check')[0].textContent.strip();
 		var proposals = getProposalsFromTestCase(testCaseId);
 		//if(typeof(proposals)=='object'&&(proposals instanceof Array)){
 		if(proposals.length>0){
@@ -179,6 +179,22 @@ var TestPlugin = function() {
 	}
 
 	function startTests(){
+	
+		var tests = xmlDoc.getElementsByTagName('testCase');
+		for(var i=0;i<testAmount;i++){
+		  var test = tests[i];
+		  var testId = test.attributes['id'].value;
+		  var checkType = test.getElementsByTagName('check')[0].attributes['type'].value;
+		  switch(checkType){
+		  	case 'assertFirstProposal':
+		  		assertFirstProposal(testId);
+		  		break;
+		  	case 'assertNoProposals':
+		  		assertNoProposals(testId);
+		  		break;
+		  }
+		}
+		/*
 		assertFirstProposal('type.TEXT.check');
 		assertFirstProposal('type.IMAGE.check');
 		assertFirstProposal('simpleCopy');
@@ -190,7 +206,10 @@ var TestPlugin = function() {
 		assertNoProposals('delete2');
 		assertFirstProposal('relativePath1');
 		assertFirstProposal('relativePath1');
+		assertFirstProposal('rightSideCompletion');
 		assertFirstProposal('externalTemplate1');
+		*/
+		
 	}
 	
 	

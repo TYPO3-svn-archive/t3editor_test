@@ -6,9 +6,9 @@
 bla = TEXT
 bla.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			value
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="type.IMAGE.check">
 		<typoscript>
@@ -16,9 +16,20 @@ bla.]]>
 bla = IMAGE
 bla.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			altText
-		</assertFirstProposal>
+		</check>
+	</testCase>
+	<testCase id="override1">
+		<typoscript>
+		<![CDATA[
+bla = IMAGE
+bla = TEXT
+bla.]]>
+		</typoscript>
+		<check type="assertFirstProposal">
+			value
+		</check>
 	</testCase>
 	<testCase id="simpleCopy">
 		<typoscript>
@@ -27,9 +38,9 @@ bla = TEXT
 blu < bla
 blu.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			value
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="reference1">
 		<typoscript>
@@ -38,9 +49,9 @@ bla = TEXT
 blu =< bla
 blu.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			value
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="reference2">
 		<typoscript>
@@ -50,9 +61,9 @@ blu =< bla
 blu.aaa = xxx
 bla.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			aaa
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="nestedType">
 		<typoscript>
@@ -63,9 +74,9 @@ bbb = TEXT
 bbb.value = fuf
 bla.aaa.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			altText
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="nestedType2">
 		<typoscript>
@@ -78,9 +89,9 @@ bbb = TEXT
 bbb.value = fuf
 bla.aaa.]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			altText
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="delete1">
 		<typoscript>
@@ -90,6 +101,7 @@ temp.myImage >
 temp.
 ]]>
 		</typoscript>
+		<check type="assertNoProposals"></check>
 	</testCase>
 	<testCase id="delete2">
 		<typoscript>
@@ -100,6 +112,7 @@ temp.myImage >
 temp.myImage.test1.
 ]]>
 		</typoscript>
+		<check type="assertNoProposals"></check>
 	</testCase>
 	<testCase id="relativePath1">
 		<typoscript>
@@ -109,9 +122,9 @@ temp.myImage{
 	
 ]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			altText
-		</assertFirstProposal>
+		</check>
 	</testCase>
 	<testCase id="relativePath2">
 		<typoscript>
@@ -122,9 +135,19 @@ temp.myImage{
 		
 ]]>
 		</typoscript>
-		<assertFirstProposal>
+		<check type="assertFirstProposal">
 			altText
-		</assertFirstProposal>
+		</check>
+	</testCase>
+	<testCase id="rightSideCompletion">
+		<typoscript>
+		<![CDATA[
+test < lib.
+]]>
+		</typoscript>
+		<check type="assertFirstProposal">
+			stdheader
+		</check>
 	</testCase>
 	<testCase id="externalTemplate1">
 		<typoscript>
@@ -132,8 +155,8 @@ temp.myImage{
 lib.
 ]]>
 		</typoscript>
-		<assertFirstProposal>
-			parseFunc
-		</assertFirstProposal>
+		<check type="assertFirstProposal">
+			stdheader
+		</check>
 	</testCase>
 </testCases>
