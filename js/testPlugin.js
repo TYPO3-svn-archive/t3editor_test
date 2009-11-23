@@ -148,10 +148,26 @@ var TestPlugin = function() {
 			assertEquals(referenceValue,proposal.word);
 		}else{
 			error("assertEquals failed: no value found in array!");
-			return;
 		}
-		
-		
+	}
+	function assertHasProposal(testCaseId,referenceValue){
+		log('testing '+testCaseId,false);
+		var testCase = getTestCaseById(testCaseId);
+		if(!referenceValue)
+			referenceValue = testCase.getElementsByTagName('check')[0].textContent.strip();
+		var proposals = getProposalsFromTestCase(testCaseId);
+		//if(typeof(proposals)=='object'&&(proposals instanceof Array)){
+		var found = false;
+		for(var i=0;i<proposals.length;i++){
+			if(proposals[i].word == referenceValue){
+				found = true;
+			}
+		}
+		if(found){
+			success();
+		}else{
+			error("assertHasProposal failed: no property '"+referenceValue+"' found in the proposals!");
+		}
 	}
 	function assertNoProposals(testCaseId){
 		log('testing '+testCaseId,false);
@@ -188,6 +204,9 @@ var TestPlugin = function() {
 		  switch(checkType){
 		  	case 'assertFirstProposal':
 		  		assertFirstProposal(testId);
+		  		break;
+		  	case 'assertHasProposal':
+		  		assertHasProposal(testId);
 		  		break;
 		  	case 'assertNoProposals':
 		  		assertNoProposals(testId);

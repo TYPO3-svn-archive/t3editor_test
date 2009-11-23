@@ -139,24 +139,50 @@ temp.myImage{
 			altText
 		</check>
 	</testCase>
-	<testCase id="rightSideCompletion">
-		<typoscript>
-		<![CDATA[
-test < lib.
-]]>
-		</typoscript>
-		<check type="assertFirstProposal">
-			stdheader
-		</check>
-	</testCase>
 	<testCase id="externalTemplate1">
 		<typoscript>
 		<![CDATA[
 lib.
 ]]>
 		</typoscript>
-		<check type="assertFirstProposal">
+		<check type="assertHasProposal">
 			stdheader
+		</check>
+	</testCase>
+	<testCase id="rightSideCompletion">
+		<typoscript>
+		<![CDATA[
+text = TEXT
+test < text.
+]]>
+		</typoscript>
+		<check type="assertFirstProposal">
+			value
+		</check>
+	</testCase>
+	<testCase id="curlyBracketsTest1">
+		<typoscript>
+		<![CDATA[
+text = TEXT
+text{
+  value = {hallo}
+  
+]]>
+		</typoscript>
+		<check type="assertFirstProposal">
+			value
+		</check>
+	</testCase>
+	<testCase id="bracketsInValue">
+		<typoscript>
+		<![CDATA[
+10 = TEXT
+10{
+  dataWrap = {field:test}
+]]>
+		</typoscript>
+		<check type="assertHasProposal">
+			dataWrap
 		</check>
 	</testCase>
 </testCases>
